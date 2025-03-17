@@ -157,7 +157,8 @@ double performSimulation(double time, double step, double dAltitude, struct cont
 
 		rocket.yAcc = (cS - dragForce - generateWind(stepCounter, 3.0))/rocket.rocketMass - STANDARD_GRAVITY;
 		rocket.yVel = prevVel + rocket.yAcc * step;
-		rocket.yPos = prevPos + prevVel * step + (rocket.yAcc * step * step)/2;
+		rocket.yPos = prevPos + prevVel * step;
+		//update: calculation corrected
 
 		cS = calculateCS(dAltitude - rocket.yPos, prevError, &errorSum, step, PID, rocket.maxThrust, stepCounter, regType);
 		//csVel = calculateCS(dAltitude - rocket.yPos, prevErrorVel, &errorSumVel, step, VelPID, rocket.maxThrust);  
